@@ -20,3 +20,6 @@ I also read two EXIF data: Focal length and 35mm Focal Length (equivalent to 35m
 The Excel file records the values as written in EXIF, as a string in the format "xx.xx mm" (eg 18.00 mm), solely for display. When preparing the data for the Chart, "mm" is deleted and the string is converted to a double.
 
 In my work, I focused on the flexibility of the solution and this MVP can certainly be better in terms of code structure, but that was not the focus this time (eg the location and name of the csv file is hardcoded in the console application and not in the environment variable or configuration file).
+
+**NOTE**
+After cloning repository, double click in Visual Studio on EXIFWeb solution, exit Visual Studio and start it again to get properly Multiple Startup project option.
