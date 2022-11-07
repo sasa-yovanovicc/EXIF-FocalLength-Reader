@@ -1,0 +1,94 @@
+﻿@model IEnumerable<EXIFWeb.Models.FocalLengthModel>
+
+@{
+    ViewData["Title"] = "Chart";
+}
+
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.4/lodash.min.js"></script>
+
+
+
+<h1>EXID Confidence Chart</h1>
+
+@Html.Partial("_ReportMenu")
+
+
+<div id="container" style="min-width: 310px; height: 500px; margin: 0 auto"></div>
+
+<script>
+    const lowerBound = @ViewData["lowerBound"], upperBound = @ViewData["upperBound"];
+
+    const normalY = (x, mean, stdDev) => Math.exp((-0.5) * Math.pow((x - mean) / stdDev, 2)) * 100000;
+
+    const getMean = (lowerBound, upperBound) => (upperBound + lowerBound) / 2;
+
+    // distance between mean and each bound of a 95% confidence interval
+    // is 2 stdDeviation, so distance between the bounds is 4
+    const getStdDeviation = (lowerBound, upperBound) => (upperBound - lowerBound) / 4;
+
+
+
+    const generatePoints = (lowerBound, upperBound) => {
+        let stdDev = getStdDeviation(lowerBound, upperBound);
+        let min = lowerBound - 2 * stdDev;
+        let max = upperBound + 2 * stdDev;
+        let unit = (max - min) / 100;
+        return _.range(min, max, unit);
+    }
+
+    let mean = getMean(lowerBound, upperBound);
+    let stdDev = getStdDeviation(lowerBound, upperBound);
+    let points = generatePoints(lowerBound, upperBound);
+
+
+    let seriesData = points.map(x => ({ x, y: normalY(x, mean, stdDev) }));
+
+    Highcharts.chart('container', {
+        chart: {
+            type: 'area',
+            height: 400,
+        },
+        title: {
+            text: 'Density plot with 95% confidence interval',
+            Y: 200,
+        },
+        yAxis: {
+            labels: {
+                enabled: false,
+            },
+            gridLineWidth: 0,
+            title: ''
+        },
+        tooltip: {
+            enabled: false,
+        },
+        legend: {
+            enabled: false,
+        },
+        series: [
+            {
+                data: seriesData
+            }
+        ],
+        plotOptions: {
+            area: {
+                enableMouseTracking: false,
+                color: 'rgb(226, 119, 122)',
+                fillColor: 'rgba(226, 119, 122, 0.5)',
+                zoneAxis: 'x',
+                zones: [{
+                    //fillColor gets the inside of the graph, color would change the lines
+                    fillColor: 'white',
+                    // everything below this value has this style applied to it
+                    value: lowerBound,
+                }, {
+                    value: upperBound,
+                }, {
+                    fillColor: 'white',
+                }]
+            }
+        }
+    });
+</script>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<EXIFWeb.Models.FocalLengthModel>
+
+@{
+    ViewData["Title"] = "Table";
+}
+
+<h1>EXID Data Table</h1>
+@Html.Partial("_ReportMenu")
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FileName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FocalLength)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FocalLength35mm)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FileName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FocalLength)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FocalLength35mm)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,46 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32929.385
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{347B081E-9699-4A09-81CD-36CB14994FF8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Console", "Console", "{4A2A595A-0DCF-4802-9E4D-DFD0EC5BDA19}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EXIFConsole.Console", "EXIFConsole.Console\EXIFConsole.Console.csproj", "{38114C2F-AE77-4244-8F05-4321620E59CF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EXIFConsole.Bll", "EXIFConsole.Bll\EXIFConsole.Bll.csproj", "{2E26B758-F588-467F-9BC6-BFCBDFCA857A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Model", "Model", "{9B128FF3-855E-4FC6-BAED-C2D567E1A3D0}"
+	ProjectSection(SolutionItems) = preProject
+		EXIFConsole.Console\FocalLengthModel.cs = EXIFConsole.Console\FocalLengthModel.cs
+		EXIFConsole.Console\MetadataModel.cs = EXIFConsole.Console\MetadataModel.cs
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{38114C2F-AE77-4244-8F05-4321620E59CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38114C2F-AE77-4244-8F05-4321620E59CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38114C2F-AE77-4244-8F05-4321620E59CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38114C2F-AE77-4244-8F05-4321620E59CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E26B758-F588-467F-9BC6-BFCBDFCA857A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E26B758-F588-467F-9BC6-BFCBDFCA857A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E26B758-F588-467F-9BC6-BFCBDFCA857A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E26B758-F588-467F-9BC6-BFCBDFCA857A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{38114C2F-AE77-4244-8F05-4321620E59CF} = {4A2A595A-0DCF-4802-9E4D-DFD0EC5BDA19}
+		{2E26B758-F588-467F-9BC6-BFCBDFCA857A} = {347B081E-9699-4A09-81CD-36CB14994FF8}
+		{9B128FF3-855E-4FC6-BAED-C2D567E1A3D0} = {4A2A595A-0DCF-4802-9E4D-DFD0EC5BDA19}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1FA6ABA7-0E76-487E-868C-D4B8C5DDC931}
+	EndGlobalSection
+EndGlobal
