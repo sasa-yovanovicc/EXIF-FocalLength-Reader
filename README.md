@@ -4,7 +4,7 @@ The solution consists of two applications
 
 1) EXIFConsole written in .NetCore 3.1 using WPF (Microsoft.NET.Sdk.WindowsDesktop) to enable folder selection from the console.
 
-2) EXIFWeb showing results and graph.
+2) EXIFWeb written in showing results and graph. This app is written .Net 6.0, because in the first approach I tried to process images in browser app, but of course Web app can be in .NetCore too. But .NET 6.0 is much faster and reduce the amount of code you need to write, and also can run on Windows and Mac, The .NET 6 release includes support for macOS Arm64 (or "Apple Silicon") and Windows Arm64 operating systems, for both native Arm64 execution and x64 emulation. 
 
 Folder selection is not possible from the browser due to browser security restrictions, so I decided on this approach (Window.showDirectoryPicker() is still an experimental method of the File System Access API and only works with Chrome, Edge and Opera browsers).
 
