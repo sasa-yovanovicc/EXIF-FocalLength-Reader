@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace EXIFConsole.Bll
+namespace EXIFConsole.Explorer
 {
     public class Select : ISelect
     {

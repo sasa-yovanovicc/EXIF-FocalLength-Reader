@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EXIFConsole", "EXIFConsole"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EXIFConsole.Console", "..\EXIFConsole\EXIFConsole.Console\EXIFConsole.Console.csproj", "{275BAEA2-7085-425E-8BFF-ABB202AA9C3F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EXIFConsole.Bll", "..\EXIFConsole\EXIFConsole.Bll\EXIFConsole.Bll.csproj", "{CCE69C14-CA73-49FF-A1EF-4C312C6BE704}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EXIFConsole.Explorer", "..\EXIFConsole\EXIFConsole.Explorer\EXIFConsole.Explorer.csproj", "{CCE69C14-CA73-49FF-A1EF-4C312C6BE704}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

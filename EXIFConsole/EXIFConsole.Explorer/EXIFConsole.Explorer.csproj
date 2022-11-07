@@ -14,10 +14,8 @@
 
   <ItemGroup>
     <Reference Include="System.Drawing">
-      <!-- <HintPath>..\EXIFConsole.Assemblies\System.Drawing.dll</HintPath> -->
     </Reference>
     <Reference Include="System.Windows.Forms">
-      <!-- <HintPath>..\EXIFConsole.Assemblies\System.Windows.Forms.dll</HintPath> -->
     </Reference>
   </ItemGroup>
 

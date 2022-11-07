@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace EXIFConsole.Bll
+namespace EXIFConsole.Explorer
 {
     /// <summary>
     /// ISelect interface.

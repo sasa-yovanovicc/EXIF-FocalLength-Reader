@@ -20,17 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EXIFConsole.Bll\EXIFConsole.Bll.csproj" />
+    <ProjectReference Include="..\EXIFConsole.Explorer\EXIFConsole.Explorer.csproj" />
   </ItemGroup>
-
-  <!-- <ItemGroup>
-    <Reference Include="System.Drawing">
-      <HintPath>..\EXIFConsole.Assemblies\System.Drawing.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Windows.Forms">
-      <HintPath>..\EXIFConsole.Assemblies\System.Windows.Forms.dll</HintPath>
-    </Reference>
-  </ItemGroup> -->
-  
-
 </Project>

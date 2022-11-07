@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Console", "Console", "{4A2A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EXIFConsole.Console", "EXIFConsole.Console\EXIFConsole.Console.csproj", "{38114C2F-AE77-4244-8F05-4321620E59CF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EXIFConsole.Bll", "EXIFConsole.Bll\EXIFConsole.Bll.csproj", "{2E26B758-F588-467F-9BC6-BFCBDFCA857A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EXIFConsole.Explorer", "EXIFConsole.Explorer\EXIFConsole.Explorer.csproj", "{2E26B758-F588-467F-9BC6-BFCBDFCA857A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Model", "Model", "{9B128FF3-855E-4FC6-BAED-C2D567E1A3D0}"
 	ProjectSection(SolutionItems) = preProject
