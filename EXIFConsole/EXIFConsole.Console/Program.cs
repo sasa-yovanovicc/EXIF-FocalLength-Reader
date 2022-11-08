@@ -12,6 +12,10 @@ namespace EXIFConsole.Console
         [STAThread]
         private static void Main(string[] args)
         {
+            string dir = @"C:\EXIFdata";
+            string csvFile = "focal_length.csv";
+            string url = "https://localhost:7273/Report/Index";
+
             System.Console.WriteLine("--------- EXIF Reader ---------");
             ISelect select = new Select();
             select.InitialFolder = "C:\\";
@@ -26,13 +30,13 @@ namespace EXIFConsole.Console
             (List<MetadataModel> metadata, List<FocalLengthModel> focalLength) results = new ExtractFocalLength().ExctractFocalLength(select.Folder);
 
             CsvExport csvExport = new();
-            csvExport.WriteCsv(results.focalLength, @"C:\EXIFdata", "focal_length.csv");
+            csvExport.WriteCsv(results.focalLength, dir, csvFile);
 
-            System.Console.WriteLine("Done. Press any key to open web application https://localhost:7273/");
+            System.Console.WriteLine($"Done. Press any key to open web application {url}");
             System.Console.ReadLine();
 
             // this will launch the default browser
-            var ps = new ProcessStartInfo("https://localhost:7273/Report/Index")
+            var ps = new ProcessStartInfo(url)
             {
                 UseShellExecute = true,
                 Verb = "open"
