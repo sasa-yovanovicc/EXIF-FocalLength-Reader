@@ -114,9 +114,6 @@ namespace EXIFWeb.Controllers
                 }
             }
             else { return null; }
-
-
-
         }
 
         /// <summary>

@@ -23,7 +23,7 @@ namespace EXIFConsole.Helpers
             using (var progress = new ProgressBar())
             {
                 var numFiles = System.IO.Directory.GetFiles(selectedFolder).Length;
-                System.Console.WriteLine(numFiles);
+
                 if (numFiles > 0)
                 {
                     int i = 0;
