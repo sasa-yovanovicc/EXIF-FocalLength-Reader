@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EXIFConsole.Console", "..\E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EXIFConsole.Explorer", "..\EXIFConsole\EXIFConsole.Explorer\EXIFConsole.Explorer.csproj", "{CCE69C14-CA73-49FF-A1EF-4C312C6BE704}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EXIFWebTests", "..\EXIFWebTests\EXIFWebTests.csproj", "{01BB62C2-CFD3-44FF-A859-3097E332AABA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -43,6 +45,14 @@ Global
 		{CCE69C14-CA73-49FF-A1EF-4C312C6BE704}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CCE69C14-CA73-49FF-A1EF-4C312C6BE704}.Release|x64.ActiveCfg = Release|Any CPU
 		{CCE69C14-CA73-49FF-A1EF-4C312C6BE704}.Release|x64.Build.0 = Release|Any CPU
+		{01BB62C2-CFD3-44FF-A859-3097E332AABA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01BB62C2-CFD3-44FF-A859-3097E332AABA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01BB62C2-CFD3-44FF-A859-3097E332AABA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{01BB62C2-CFD3-44FF-A859-3097E332AABA}.Debug|x64.Build.0 = Debug|Any CPU
+		{01BB62C2-CFD3-44FF-A859-3097E332AABA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01BB62C2-CFD3-44FF-A859-3097E332AABA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01BB62C2-CFD3-44FF-A859-3097E332AABA}.Release|x64.ActiveCfg = Release|Any CPU
+		{01BB62C2-CFD3-44FF-A859-3097E332AABA}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
