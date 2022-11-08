@@ -23,13 +23,16 @@ namespace EXIFConsole.Helpers
             {
                 Directory.CreateDirectory(dir);
             }
-
-            string csvFilePath = dir + @"\" + csvFileName;
-            using var writer = new StreamWriter(csvFilePath);
-            using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+            if (focalLength != null)
             {
-                csv.WriteRecords(focalLength);
+                string csvFilePath = dir + @"\" + csvFileName;
+                using var writer = new StreamWriter(csvFilePath);
+                using (var csv = new CsvWriter(writer, CultureInfo.InvariantCulture))
+                {
+                    csv.WriteRecords(focalLength);
+                }
             }
+
         }
     }
 }

@@ -23,52 +23,70 @@ namespace EXIFConsole.Helpers
             using (var progress = new ProgressBar())
             {
                 var numFiles = System.IO.Directory.GetFiles(selectedFolder).Length;
-
-                int i = 0;
-                foreach (string file in System.IO.Directory.GetFiles(selectedFolder))
+                System.Console.WriteLine(numFiles);
+                if (numFiles > 0)
                 {
-                    progress.Report((double)++i / numFiles);
-
-                    IEnumerable<Directory> directories = ImageMetadataReader.ReadMetadata(file);
-
-                    foreach (var directory in directories)
+                    int i = 0;
+                    foreach (string file in System.IO.Directory.GetFiles(selectedFolder))
                     {
-                        foreach (var tag in directory.Tags)
+                        progress.Report((double)++i / numFiles);
+
+                        //FileType fileType = FileTypeDetector.DetectFileType
+                        IEnumerable<Directory> directories;
+                        try
                         {
-                            metadata.Add(new MetadataModel { FileName = file, DirectoryName = tag.DirectoryName, Name = tag.Name, Description = tag.Description });
-                            if (tag.Name == "Focal Length")
-                            {
-                                if (focalLength.Any(x => x.FileName == file))
-                                {
-                                    focalLength.First(x => x.FileName == file).FocalLength = tag.Description;
-                                }
-                                else
-                                {
-                                    focalLength.Add(new FocalLengthModel { FileName = file, FocalLength = tag.Description });
-                                }
-                            }
-                            else if (tag.Name == "Focal Length 35")
-                            {
-                                if (focalLength.Any(x => x.FileName == file))
-                                {
-                                    focalLength.First(x => x.FileName == file).FocalLength35mm = tag.Description;
-                                }
-                                else
-                                {
-                                    focalLength.Add(new FocalLengthModel { FileName = file, FocalLength35mm = tag.Description });
-                                }
-                            }
+                            directories = ImageMetadataReader.ReadMetadata(file);
+                        }
+                        catch
+                        {
+                            continue;
                         }
 
-                        if (directory.HasError)
+
+                        foreach (var directory in directories)
                         {
-                            foreach (var error in directory.Errors)
-                                System.Console.WriteLine($"ERROR: {error}");
+                            foreach (var tag in directory.Tags)
+                            {
+                                metadata.Add(new MetadataModel { FileName = file, DirectoryName = tag.DirectoryName, Name = tag.Name, Description = tag.Description });
+                                if (tag.Name == "Focal Length")
+                                {
+                                    if (focalLength.Any(x => x.FileName == file))
+                                    {
+                                        focalLength.First(x => x.FileName == file).FocalLength = tag.Description;
+                                    }
+                                    else
+                                    {
+                                        focalLength.Add(new FocalLengthModel { FileName = file, FocalLength = tag.Description });
+                                    }
+                                }
+                                else if (tag.Name == "Focal Length 35")
+                                {
+                                    if (focalLength.Any(x => x.FileName == file))
+                                    {
+                                        focalLength.First(x => x.FileName == file).FocalLength35mm = tag.Description;
+                                    }
+                                    else
+                                    {
+                                        focalLength.Add(new FocalLengthModel { FileName = file, FocalLength35mm = tag.Description });
+                                    }
+                                }
+                            }
+
+                            if (directory.HasError)
+                            {
+                                foreach (var error in directory.Errors)
+                                    System.Console.WriteLine($"ERROR: {error}");
+                            }
                         }
                     }
+                    return (metadata, focalLength);
                 }
+                else
+                {
+                    return (null, null);
+                }
+
             }
-            return (metadata, focalLength);
         }
     }
 }
