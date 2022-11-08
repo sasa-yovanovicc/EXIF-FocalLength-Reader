@@ -42,8 +42,11 @@ namespace EXIFWeb.Controllers
         public IActionResult Distribution()
         {
             var sample = GetSample();
-
-            var data = Frequency(sample);
+            List<FrequencyModel> data = new List<FrequencyModel>();
+            if (sample != null)
+            {
+                data = Frequency(sample);
+            }
 
             return View("Distribution", data);
         }
@@ -54,21 +57,28 @@ namespace EXIFWeb.Controllers
         /// <returns></returns>
         public IActionResult Chart()
         {
+            ViewData["Null"] = false;
             var sample = GetSample();
-
-            var ci = ConfidenceInterval(sample, 0.95);
-
-            ViewData["Data"] = String.Join(",", sample);
-            ViewData["lowerBound"] = ci.lowerBound;
-            ViewData["upperBound"] = ci.upperBound;
-
-            string freqString = "";
-            foreach (var item in Frequency(sample))
+            List<FrequencyModel> data = new List<FrequencyModel>();
+            if (sample != null)
             {
-                freqString += "{name: " + item.Value + ", y: " + item.Frequency + ", },";
-            }
-            ViewData["frequency"] = freqString;
+                var ci = ConfidenceInterval(sample, 0.95);
 
+                ViewData["Data"] = String.Join(",", sample);
+                ViewData["lowerBound"] = ci.lowerBound;
+                ViewData["upperBound"] = ci.upperBound;
+
+                string freqString = "";
+                foreach (var item in Frequency(sample))
+                {
+                    freqString += "{name: " + item.Value + ", y: " + item.Frequency + ", },";
+                }
+                ViewData["frequency"] = freqString;
+            }
+            else
+            {
+                ViewData["Null"] = true;
+            }
             return View("Chart");
         }
 
@@ -86,13 +96,27 @@ namespace EXIFWeb.Controllers
                 MissingFieldFound = null,
             };
 
-            using (var reader = new StreamReader(@"C:\EXIFdata\focal_length.csv"))
-            using (var csv = new CsvReader(reader, configuration))
+            if (System.IO.File.Exists(@"C:\EXIFdata\focal_length.csv"))
             {
-                var records = csv.GetRecords<FocalLengthModel>();
-                focalLengthData = records.Skip(1).ToList();
+                try
+                {
+                    using (var reader = new StreamReader(@"C:\EXIFdata\focal_length.csv"))
+                    using (var csv = new CsvReader(reader, configuration))
+                    {
+                        var records = csv.GetRecords<FocalLengthModel>();
+                        focalLengthData = records.Skip(1).ToList();
+                    }
+                    return focalLengthData;
+                }
+                catch
+                {
+                    throw;
+                }
             }
-            return focalLengthData;
+            else { return null; }
+
+
+
         }
 
         /// <summary>
@@ -125,9 +149,13 @@ namespace EXIFWeb.Controllers
         private double[] GetSample()
         {
             var focalLengthData = GetCsvFocalLengthData();
-            char[] charsToTrim = { ' ', 'm' };
-            var sample = focalLengthData.Select(x => Convert.ToDouble(x.FocalLength?.TrimEnd(charsToTrim))).ToArray();
-            return sample;
+            if (focalLengthData != null)
+            {
+                char[] charsToTrim = { ' ', 'm' };
+                var sample = focalLengthData.Select(x => Convert.ToDouble(x.FocalLength?.TrimEnd(charsToTrim))).ToArray();
+                return sample;
+            }
+            return null;
         }
     }
 }

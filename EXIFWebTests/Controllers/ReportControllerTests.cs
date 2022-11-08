@@ -19,8 +19,23 @@ namespace EXIFWeb.Controllers.Tests
             double[] data = ReportControllerTests.GetSamplesData();
             (double lowerBound, double upperBound) bounds = ReportController.ConfidenceInterval(data, 0.95);
 
+            Assert.NotNull(bounds);
             Assert.Equal(lowerBound, bounds.lowerBound);
             Assert.Equal(upperBound, bounds.upperBound);
+
+        }
+
+        [Fact]
+
+        public void FrequencyTest()
+
+        {
+            double[] data = ReportControllerTests.GetSamplesData();
+            var res = ReportController.Frequency(data);
+
+            Assert.NotEmpty(res);
+            Assert.Equal(10, res.Count());
+            Assert.Equal(100, res.Sum(x => x.Frequency));
 
         }
     }

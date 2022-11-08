@@ -14,6 +14,12 @@
 
 @Html.Partial("_ReportMenu")
 
+@if ((bool)ViewData["Null"] ){
+    <h2>The input data does not exist. It is possible that the CSV file does not exist.</h2>
+
+}
+else {
+
 
 <div id="container" style="min-width: 310px; height: 500px; margin: 0 auto"></div>
 <div id="container2" style="min-width: 310px; height: 500px; margin: 0 auto"></div>
@@ -139,3 +145,4 @@
 
     });
 </script>
+}
