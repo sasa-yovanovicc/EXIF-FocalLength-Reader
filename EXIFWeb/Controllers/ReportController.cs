@@ -41,14 +41,12 @@ namespace EXIFWeb.Controllers
         /// <returns></returns>
         public IActionResult Distribution()
         {
-            var focalLengthData = GetCsvFocalLengthData();
-            char[] charsToTrim = { ' ', 'm' };
-            var sample = focalLengthData.Select(x => Convert.ToDouble(x.FocalLength?.TrimEnd(charsToTrim))).ToArray();
+            var sample = GetSample();
+
             var data = Frequency(sample);
 
             return View("Distribution", data);
         }
-
 
         /// <summary>
         /// Chart Controller.
@@ -56,11 +54,7 @@ namespace EXIFWeb.Controllers
         /// <returns></returns>
         public IActionResult Chart()
         {
-            var focalLengthData = GetCsvFocalLengthData();
-
-            char[] charsToTrim = { ' ', 'm' };
-
-            var sample = focalLengthData.Select(x => Convert.ToDouble(x.FocalLength?.TrimEnd(charsToTrim))).ToArray();
+            var sample = GetSample();
 
             var ci = ConfidenceInterval(sample, 0.95);
 
@@ -126,6 +120,14 @@ namespace EXIFWeb.Controllers
                           select new FrequencyModel { Value = g.Key.ToString(), Frequency = (double)g.Count() / count * 100, }).ToList();
 
             return result;
+        }
+
+        private double[] GetSample()
+        {
+            var focalLengthData = GetCsvFocalLengthData();
+            char[] charsToTrim = { ' ', 'm' };
+            var sample = focalLengthData.Select(x => Convert.ToDouble(x.FocalLength?.TrimEnd(charsToTrim))).ToArray();
+            return sample;
         }
     }
 }
