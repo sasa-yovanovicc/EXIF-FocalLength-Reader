@@ -36,6 +36,21 @@ namespace EXIFWeb.Controllers
         }
 
         /// <summary>
+        /// EXIF data Distribution of Focal lengths.
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult Distribution()
+        {
+            var focalLengthData = GetCsvFocalLengthData();
+            char[] charsToTrim = { ' ', 'm' };
+            var sample = focalLengthData.Select(x => Convert.ToDouble(x.FocalLength?.TrimEnd(charsToTrim))).ToArray();
+            var data = Frequency(sample);
+
+            return View("Distribution", data);
+        }
+
+
+        /// <summary>
         /// Chart Controller.
         /// </summary>
         /// <returns></returns>
@@ -46,11 +61,19 @@ namespace EXIFWeb.Controllers
             char[] charsToTrim = { ' ', 'm' };
 
             var sample = focalLengthData.Select(x => Convert.ToDouble(x.FocalLength?.TrimEnd(charsToTrim))).ToArray();
-            ViewData["Data"] = String.Join(",", sample);
 
             var ci = ConfidenceInterval(sample, 0.95);
+
+            ViewData["Data"] = String.Join(",", sample);
             ViewData["lowerBound"] = ci.lowerBound;
             ViewData["upperBound"] = ci.upperBound;
+
+            string freqString = "";
+            foreach (var item in Frequency(sample))
+            {
+                freqString += "{name: " + item.Value + ", y: " + item.Frequency + ", },";
+            }
+            ViewData["frequency"] = freqString;
 
             return View("Chart");
         }
@@ -93,6 +116,16 @@ namespace EXIFWeb.Controllers
             double sd = samples.StandardDeviation();
             double t = T * (sd / Math.Sqrt(samples.Length));
             return (mean - t, mean + t);
+        }
+
+        public static List<FrequencyModel> Frequency(double[] samples)
+        {
+            var count = samples.Count();
+            var result = (from s in samples
+                          group s by s into g
+                          select new FrequencyModel { Value = g.Key.ToString(), Frequency = (double)g.Count() / count * 100, }).ToList();
+
+            return result;
         }
     }
 }
